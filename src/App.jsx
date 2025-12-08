@@ -279,10 +279,21 @@ const CitySkyline3D = () => {
 };
 
 // ... ProjectCard Component (unchanged) ...
-const ProjectCard = ({ title, year, category, desc, color }) => (
+const ProjectCard = ({ title, year, category, desc, color, image }) => (
   <div className="group relative w-full aspect-[3/4] md:aspect-[16/9] overflow-hidden bg-stone-900 border border-stone-800 transition-all duration-500 hover:border-stone-500">
-    <div className={`absolute inset-0 bg-gradient-to-br ${color} opacity-10 group-hover:opacity-20 transition-opacity duration-500`}></div>
-    <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }}></div>
+    
+    {image && (
+      <img
+        src={image}
+        alt={title}
+        className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-500"
+        referrerPolicy="no-referrer"
+      />
+    )}
+
+    <div className={`absolute inset-0 bg-gradient-to-br ${color} opacity-10 group-hover:opacity-20 transition-opacity duration-500`} />
+    <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }} />
+
     <div className="absolute inset-0 p-6 flex flex-col justify-between">
       <div className="flex justify-between items-start">
         <span className="text-xs font-mono text-stone-500 tracking-widest">{year}</span>
@@ -300,6 +311,7 @@ const ProjectCard = ({ title, year, category, desc, color }) => (
     </div>
   </div>
 );
+
 
 // -----------------------------------------------------------------------------
 // 主应用
@@ -379,7 +391,7 @@ export default function App() {
                   Documentary Director
                 </span>
                 <p className="font-serif text-white text-lg md:text-xl italic max-w-xs leading-relaxed">
-                  "在这座钢铁森林里，<br/>仰望唯一的月亮。"
+                  "我们虽囿于永夜，<br/>却也偶有微光。"
                 </p>
              </div>
           </div>
@@ -446,25 +458,28 @@ export default function App() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <ProjectCard 
-              title="Concrete Jungle" 
-              year="2024" 
-              category="Feature Documentary" 
-              desc="The last three months of an urban village behind the CBD."
+              title="再见 沉默年代" 
+              year="2021" 
+              category="剧情短片 " 
+              desc="多年以后，张筱雨想起了那段所有人都无法说话的日子。"
               color="from-stone-800"
+              image="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAEMWW5pNuvkVXBodp-T47SzhzYEnoCjmgACqSAAAjH4uFUNgYPmuuuI9jYE.png"
             />
             <ProjectCard 
-              title="Night Bus N98" 
+              title="远山" 
               year="2023" 
-              category="Short / Experimental" 
-              desc="Dreams and fatigue on a 3 AM bus ride across the sleeping city."
+              category="纪录片" 
+              desc="凉山深处，一位放羊的音乐家决定走出大山。"
               color="from-blue-900"
+              image="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAEMWXtpNu0SlHri6jmzi4lZGOBnCKllDAACtyAAAjH4uFWnH7zwt2L7tDYE.png"
             />
             <ProjectCard 
-              title="The Watchman" 
-              year="2022" 
-              category="Portrait" 
-              desc="48 hours with a skyscraper security guard. Boundaries of duty and solitude."
+              title="深圳赤湾火灾应急演练" 
+              year="2024" 
+              category="大型活动/政企宣传片" 
+              desc="突如其来的大火打破了深圳湾的宁静"
               color="from-yellow-900"
+              image="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAEMWcBpNvNB-BszAAHH864zOQzvPTqe5REAAgohAAIx-LhVd-9R-g37xFc2BA.jpeg"
             />
             <ProjectCard 
               title="Way Home II" 
